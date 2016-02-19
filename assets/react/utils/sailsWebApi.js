@@ -8,7 +8,7 @@
 var io = require('./sails.io.js')();
 var d3 = require('d3');
 var GeoApp = require('../../../AppConfig').geourl;
-
+var localApp = '/';
 var ServerActionCreators = require('../actions/ServerActionsCreator');
 
 //---------------------------------------------------
@@ -22,7 +22,8 @@ function listenToSockets(sessionUser){
 module.exports = {
 
   init:function(user){
-      this.getGeoData('MSA','');
+      this.getNaicsCodes();
+      this.getDataIds('msa');
   },
 
 
@@ -35,6 +36,22 @@ module.exports = {
 	  if(cb){cb(data);}
       });
   },
+
+  getDataIds : function(type,cb){
+      d3.json(localApp+'ids/'+type, (err,data) =>{
+	  ServerActionCreators.setMetaData('geo',data);
+	  if(cb){cb(data);}
+      });
+  },
+
+  getNaicsCodes : function(cb){
+      d3.json(localApp+'ids/naics', (err,data) => {
+	  ServerActionCreators.setMetaData('naics',data);
+	  if(cb){cb(data);}
+      });
+  },
+
+   
   //---------------------------------------------------
   // Sails Rest Route
   //---------------------------------------------------

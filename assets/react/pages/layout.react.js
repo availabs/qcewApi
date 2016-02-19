@@ -15,6 +15,8 @@ var App = React.createClass({
         return {
 	    GeoData: GeoStore.getAll(),
 	    QCEWData: QCEWStore.getAll(),
+	    MSAMetaData:GeoStore.getMeta(),
+	    NaicsMetaData: QCEWStore.getNaics(),
         };
     },
 
@@ -46,6 +48,8 @@ var App = React.createClass({
 	        <RouteHandler
 	         geoData={this.state.GeoData}
 	         qcewData={this.state.QCEWData}
+	         MSAMetaData={this.state.MSAMetaData}
+	         NaicsMetaData ={this.state.NaicsMetaData}
  		/>
                 
 		

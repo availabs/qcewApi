@@ -1,4 +1,5 @@
 var React = require('react'),
+    _     = require('lodash'),
     LeafletMap = require('../../components/utils/LeafletMap.react');
 var msaGeo = null,
     msaGeoId = 0;
@@ -8,10 +9,12 @@ var MSAMap = React.createClass({
     
 
     _calcLayers(){
-	if(!msaGeo && Object.keys(this.props.msaGeo).length > 0){
+	if(Object.keys(this.props.msaGeo).length > 0 && (!msaGeo ||
+	  this.props.msaGeo && !_.isEqual(this.props.msaGeo,msaGeo)) ){
 	    msaGeo = this.props.msaGeo;
 	    msaGeoId++;
 	}
+	
 
 	var layers = {
 
@@ -20,28 +23,31 @@ var MSAMap = React.createClass({
 		geo:msaGeo || emptyGeoJson,
 		options:{
 		    zoomOnLoad:true,
-		    style(feature){
+		    zoomOnUpdate:true,
+		    style:function(feature){
+			console.log(feature);
 			return {
+			    stroke:true,
 			    className:'msa_' + feature.properties.geoid,
-			    fillColor:'rgb(69, 237, 139)',
-			    weight:1,
-			    opacity:0.5,
-			    fillOpacity:0.5,
+			    fillColor:'#888fff',
+			    fillOpacity:0.2,
+			    
 			    };
 		    },
+		    onEachFeature(feature,layer){
+			console.log(feature);
+			layer.on({
+			    mouseover(e){
+				e.target.setStyle({fillOpacity:0.5});
+			    },
+			    mouseout(e){
+				e.target.setStyle({fillOpacity:0.2});
+			    },
+			    
+			});
+		    },
 		},
-		onEachFeature(feature,layer){
-
-		    layer.on({
-			mouseover(e){
-			    e.target.setStyle({weight:6});
-			},
-			mouseout(e){
-			    e.target.setStyle({weight:1});
-			},
-			
-		    });
-		},
+		
 
 	    }
 

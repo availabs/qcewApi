@@ -10,6 +10,7 @@ var ActionTypes = QCEWConstants.QCEWTypes;
 var CHANGE_EVENT = 'change';
 
 var _qcew = {},
+    _naics = [],
     loading = '';
 
 var QCEWStore = assign({},EventEmitter.prototype,{
@@ -33,6 +34,9 @@ var QCEWStore = assign({},EventEmitter.prototype,{
     getAll : function(){
 	return _qcew;
     },
+    getNaics : function(){
+	return _naics;
+    },
 });
 
 
@@ -46,7 +50,15 @@ QCEWStore.dispatchToken = AppDispatcher.register(function(payload){
 	case ActionTypes.SET_QCEW_DATA:
 	console.log(action.data);
 	break;
+
+	case ActionTypes.SET_NAICS_META_DATA:
+	console.log(action.data);
+	_naics = action.data;
+	QCEWStore.emitChange();
+	break;
 	
+	
+
 	default:
 	//do nothing
     }

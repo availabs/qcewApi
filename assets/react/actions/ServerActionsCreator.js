@@ -4,10 +4,13 @@
  *
  */
 
+var _ = require('lodash');
 var AppDispatcher = require('../dispatcher/AppDispatcher');
-var GeoConstants = require('../constants/GeoConstants');
-var ActionTypes = GeoConstants.GeoTypes;
+var GeoTypes = require('../constants/GeoConstants').GeoTypes;
+var QCEWTypes = require('../constants/QCEWConstants').QCEWTypes;
+var ActionTypes = {};
 
+ActionTypes = _.merge(GeoTypes,QCEWTypes);
 
 module.exports = {
 
@@ -31,6 +34,15 @@ module.exports = {
 	   type: ActionTypes[actiontype],
 	   data:data,
        });
+   },
+   
+   setMetaData : function(type,data){
+      var actiontype= 'SET_'+type.toUpperCase() + '_META_DATA';
+      console.log
+      AppDispatcher.handleServerAction({
+	  type: ActionTypes[actiontype],
+	  data:data,
+      });
    },
 
 };

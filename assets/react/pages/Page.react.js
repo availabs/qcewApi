@@ -17,7 +17,10 @@ var Page = React.createClass({
 	    <div className='row'>
 		<div className='col-lg-2'>
 		
-		<QCEWselectors />
+		<QCEWselectors
+	         msadata={this.props.MSAMetaData}
+	         naicsdata={this.props.NaicsMetaData}
+		/>
 		
 		</div>
 		<div className='col-lg-10'>
