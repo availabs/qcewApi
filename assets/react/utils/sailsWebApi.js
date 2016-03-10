@@ -7,9 +7,18 @@
 
 var io = require('./sails.io.js')();
 var d3 = require('d3');
-var GeoApp = require('../../../AppConfig').geourl;
+var Apps = require('../../../AppConfig'),
+    GeoApp = Apps.geourl,
+    QcewApp = Apps.qcewurl;
+console.log(Apps);
 var localApp = '/';
 var ServerActionCreators = require('../actions/ServerActionsCreator');
+
+var census2qcew = {
+    area : function(id){
+	return 'C' + id.substr(0,4);
+    },
+};
 
 //---------------------------------------------------
 // Socket Events
@@ -51,7 +60,18 @@ module.exports = {
       });
   },
 
-   
+  getQCEWData : function(criteria,cb){
+      var year = criteria.year[0];
+      var naics = criteria.naics;
+      var area = census2qcew.area(criteria.area[0]);
+      var url = QcewApp+'/fips'+area+'/yr'+year+'/qtr1/oc0';
+      console.log(url);
+      d3.json(url, (err,data)=>{
+      		  ServerActionCreators.setData('qcew',data);
+      		  if(cb){cb(data)}
+      	      });
+  },
+
   //---------------------------------------------------
   // Sails Rest Route
   //---------------------------------------------------

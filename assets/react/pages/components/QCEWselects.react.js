@@ -1,5 +1,6 @@
 var React = require('react'),
-    Select2Component = require('../../components/utils/Select2.react');
+    _     = require('lodash'),
+    Select2Component = require('../../components/utils/Select2.react'),
     UserActionCreators = require('../../actions/UserActionCreators');
 
 var selectForm = React.createClass({
@@ -8,15 +9,14 @@ var selectForm = React.createClass({
 	return {
 	    naicsdata:[],
 	    msadata:[],
-	    
 	};
-	
     },
 
     getInitialState : function(){
 	return {
 	    currentMsa : [],
 	    currentNaics: [],
+	    currentYear : [],
 	};
     },
     
@@ -31,6 +31,13 @@ var selectForm = React.createClass({
 	console.log(e,selection);
 	if(selection){
 	    this.setState({currentNaics:[selection.id]});
+	}
+    },
+
+    setYear : function(e,selection){
+	console.log(e,selection);
+	if(selection){
+	    this.setState({currentYear:[selection.id]});
 	}
     },
 
@@ -51,19 +58,26 @@ var selectForm = React.createClass({
 	    };
 	});
     },
-
+    getYears : function(){
+	return _.range(1990,2016).reverse().map(year => {
+	    return {id:year,text:year+''};
+	});
+    },
     submit : function(){
 	if(this.state.currentMSA.length > 0)
 	    UserActionCreators.getMSAData(this.state.currentMSA);
-	if(this.state.currentNaics.length > 0)
-	    UserActionCreators.getNaicsData(this.state.currentNaics)
+	if(this.state.currentYear.length > 0)
+	    UserActionCreators.getQCEWData({naics:this.state.currentNaics,
+					   year:this.state.currentYear,
+					   area:this.state.currentMSA,});
     },
 
     render : function(){
 	console.log(this.props);
 	var formattedNAICS = this.formatNaics();
 	var formattedMSAs = this.formatMSA();
-
+	var years  = this.getYears();
+	console.log(years);
 	return (
 	   <div>
 	   <div className='col-md-6'/>
@@ -82,7 +96,7 @@ var selectForm = React.createClass({
 	        </div>
 		<div className='row'>
 		<br/>
-	        </div>
+	        </div> 
 		<div className='row'>
 		<Select2Component
 	          id='NAICS_CODE_SELECTOR'
@@ -92,6 +106,20 @@ var selectForm = React.createClass({
 	          onSelection={this.setNaics}
 	          placeholder={'Naics Code'}
 	          val={this.state.currentNaics}
+	        />
+		</div>
+		<div className='row'>
+		<br/>
+	        </div> 
+		<div className='row'>
+		<Select2Component
+	          id='YEAR_SELECTOR'
+	          dataSet={years}
+	          multiple={false}
+	          styleWidth='100%'
+	          onSelection={this.setYear}
+	          placeholder={'Year'}
+	          val={this.state.currentYear}
 	        />
 		</div>
 		<a className='btn btn-info' onClick={this.submit}>submit</a> 

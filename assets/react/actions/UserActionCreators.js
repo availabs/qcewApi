@@ -13,11 +13,11 @@ module.exports = {
 	});
     },
 
-    getNaicsData : function(ids){
-	var actiontype = 'GET_NAICS_DATA';
+    getQCEWData : function(criteria){
+	var actiontype = 'GET_QCEW_DATA';
 	AppDispatcher.handleViewAction({
 	   type: QCEWTypes[actiontype],
-	    data: ids,
+	    criteria: criteria,
 	});
 
     },

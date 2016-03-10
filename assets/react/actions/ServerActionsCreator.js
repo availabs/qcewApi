@@ -28,21 +28,26 @@ module.exports = {
     // 	    Id: id
     // 	});
     // },
-   setData : function(type,data){
+   setData : function(type,data,id){
        var actiontype = 'SET_'+type.toUpperCase() + '_DATA';
-       AppDispatcher.handleServerAction({
+       var action = {
 	   type: ActionTypes[actiontype],
 	   data:data,
-       });
+       };
+       if(id)
+	   action.id = id;
+       AppDispatcher.handleServerAction(action);
    },
    
-   setMetaData : function(type,data){
-      var actiontype= 'SET_'+type.toUpperCase() + '_META_DATA';
-      console.log
-      AppDispatcher.handleServerAction({
+   setMetaData : function(type,data,id){
+       var actiontype= 'SET_'+type.toUpperCase() + '_META_DATA';
+       var action = {
 	  type: ActionTypes[actiontype],
 	  data:data,
-      });
+      };
+       if(id)
+	   action.id = id;
+      AppDispatcher.handleServerAction(action);
    },
 
 };

@@ -62,7 +62,8 @@ var MSAMap = React.createClass({
 	return (
 	    <LeafletMap
 	    layers= {layers}
-	    height='950px'
+	    height='500px'
+	    
 		/>
 
 	);

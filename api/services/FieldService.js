@@ -77,6 +77,7 @@ var meta_data= {
 	    ['oc','alvl'],
 	    ['ind','oc']
 	    ['oc','alvl'],
+	    ['qtr','oc'],
 	    ['qtr','ind','alvl'],
 	    ['qtr','oc','alvl'],
 	    ['ind','oc','alvl'],
@@ -175,13 +176,21 @@ module.exports = {
 
     _fieldConditions : function(field){
 	var w = 1;
+	var flag;
 	lodash.keys(meta_data.valid.formatmap).forEach((key)=>{
 	    if(field.includes(key)){
+		flag = key
 		w = meta_data.valid.formatmap[key]
 	    }
 
 	});
-	var re = new RegExp("\\d{1,"+ w + "}","g");
+	var re;
+	if(flag === 'fips'){
+	   re = new RegExp('C\\d{4}|CS\\d{3}|US000|USCMS|USNMS'+
+			   '|USMSA|\\d{5}','g')
+	}else{
+	    re = new RegExp("\\d{1,"+ w + "}","g");
+	}
 	return field.match(re);
     },
 
