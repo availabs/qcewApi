@@ -135,12 +135,20 @@ module.exports = {
 	//makesure constaints valid, field valid,
 	//and that year and area are both constrained
 	console.log('constraints',validConstraints,
-		    '\nillegal Fields',     !areValidFields,
-		    '\nyear', fieldmap['yr'] && fieldmap['yr'].length > 0,
-		    '\nfips', fieldmap['fips'] && fieldmap['fips'].length > 0);
-	return validConstraints && areValidFields && 
-	    fieldmap['yr'] && fieldmap['yr'].length > 0 && 
-	    fieldmap['fips'] && fieldmap['fips'].length > 0;
+		    '\nillegal Fields',     !areValidFields)
+
+	var check = x => fieldmap[x] && fieldmap[x].length > 0;
+	var fipscheck = check('fips');
+	var indcheck = check('ind');
+	var yrcheck = check('yr');
+	
+		    
+	return validConstraints && areValidFields &&
+	    ((fipscheck && indcheck) || (fipscheck && yrcheck)
+	     || (yrcheck && indcheck))
+
+
+	    
     },
     
     /**
@@ -278,7 +286,8 @@ module.exports = {
      */
     querydb : function(params,columns,out,cb){
 	var map    = this._getConditions(params);
-
+	var qtype = "area"
+	
 	if(!this._isValid(map)){
 	    
 	    throw new Error('Malformed field','FieldService',129);
@@ -290,11 +299,17 @@ module.exports = {
 	    });
 	}
 	
+	if( !(map.fips && map.fips.length > 0)){
+	    qtype='all area';
+	    
+	}
 	var tfields = Object.keys(map).map(val =>{ 
 	    return meta_data.valid.keymap[val];
 	})
 			
 	var t = this._columns(columns);
+	
+
 	
 	dbconn.pass(lodash.union(t,tfields),this._buildConditions(map),(e,d)=>{
 	    
