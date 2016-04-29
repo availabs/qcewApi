@@ -1,75 +1,806 @@
-<!-- Default home page -->
-<link type="text/css" href='http://sailsjs.org/styles/fonts.css' rel='stylesheet'/>
-<style>
-    /* Styles included inline since you'll probably be deleting this page anyway */
-    html,body{text-align:left;font-size:1em}html,body,img,form,textarea,input,fieldset,div,p,div,ul,li,ol,dl,dt,dd,h1,h2,h3,h4,h5,h6,pre,code{margin:0;padding:0}ul,li{list-style:none}img{display:block}a img{border:0}a{text-decoration:none;font-weight:normal;font-family:inherit}*:active,*:focus{outline:0;-moz-outline-style:none}h1,h2,h3,h4,h5,h6{font-weight:normal}div.clear{clear:both}.clearfix:after{clear:both;content:".";display:block;font-size:0;height:0;line-height:0;visibility:hidden}body{font-family:"Open Sans",Arial,sans-serif;font-weight:300;}.top-bar {width: 100%; background-color: #e4f0f1; padding: 15px 0;}.top-bar .container img {float: left;}.top-bar .container ul {float: right; padding-top: 25px;}.top-bar .container li {float: left; width: 125px; text-align: center; font-size: 15px; color:#000; font-weight: 600;}.top-bar .container a li:hover {color: #118798; -webkit-transition:color 200ms; -moz-transition:color 200ms; -o-transition:color 200ms;transition:color 200ms;}.container{width: 80%; max-width: 1200px; margin: auto;}div.header {-webkit-transition: 6s; -moz-transition: 6s; -o-transition: 6s;transition: 6s; background: rgba(4, 36, 41, 0.89) url(http://sailsjs.org/images/img_sailsShadow.png) no-repeat 42% bottom; padding: 100px 0 65px;}.header h1#main-title{color: #fff; font-weight: 300; font-size: 2.5em;}.header h3{color: #b1eef7; font-style: italic; font-weight: 300;}.header h3 code{font-style: normal!important; background-color: rgba(255,255,255,0.5); font-weight: 300; color:#0e6471; margin: 0px 5px;}div.main.container{padding: 50px 0;}h1 {color: #118798; font-weight: 300;}code {font-size: inherit; font-family: 'Consolas', 'Monaco', monospace; padding:4px 5px 1px; background-color: #f3f5f7}a{color: #118798; font-weight: 300; text-decoration: underline;}a:hover {color: #0e6471; -webkit-transition:color 200ms; -moz-transition:color 200ms; -o-transition:color 200ms;transition:color 200ms;}p{line-height: 1.5em;}blockquote{background-color: #e4f0f1; padding: 25px; line-height: 1.5em; margin: 15px 0;}blockquote span{font-weight: 600; padding-right: 5px;}ul.getting-started{padding: 25px 75px 25px 0; width: 70%; float: left; -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box;}ul.getting-started li{padding: 25px 0;}ul.getting-started li h3 {padding-bottom: 10px; font-size: 25px; font-weight: 300;}.sprite{background:url(http://sailsjs.org/images/newapp.sprite.png) no-repeat; position: absolute; left: 0; top:0;}.getting-started .sprite{margin-left:10px;padding-left:60px;height:42px;width:0; float: left;}.getting-started .one{background-position:0 0}.getting-started .two{background-position:0 -42px}.getting-started .three{background-position:0 -83px}div.step {position: relative; padding-left: 70px; opacity: 0.9;}div.step:hover{ opacity: 1;}div.links {float: left; width: 30%; max-width: 325px; -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box; background-color: #f3f5f7; border: 1px solid #ebebeb; padding: 25px 45px 35px;}div.links h3 {color: #727272; text-align: center; font-size: 28px; font-weight: 300;}div.links h4 {color: #727272; font-size: 17px; font-weight: 600; padding: 15px 0 10px;}div.links .link-list a {text-decoration: none; font-weight: 400;}div.links .link-list a li {padding: 0px 0px 5px 10px;}div.default-page{min-width: 1200px;}.pocket{display:none;}
-</style>
-<script type="text/javascript">
-setTimeout(function sunrise () {
-    document.getElementsByClassName('header')[0].style.backgroundColor = '#118798';
-}, 0);
-</script>
+<link rel="stylesheet" href="/styles/docs.css">
+<!-- Docs master nav -->
 
-<div class="default-page">
-    <div class="header">
-        <h1 id="main-title" class="container"><%= __('A brand new app.') %></h1>
-        <h3 class="container">You're looking at: <code><%= view.pathFromApp + '.' +view.ext %></code></h3>
+<div class="navbar2 navbar-fixed-top navbar-default">
+  <div class="container">
+    <div class="navbar2">
+      <button class="navbar-toggle" data-toggle="collapse" data-target="#main-nav">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="http://availabs.org/"><img src="/images/logo.png"></a>
     </div>
-    <div class="main container clearfix">
-        <!-- <h1>Getting started</h1>
-        <p>Don't worry, we've got your back.</p> -->
-        <ul class="getting-started">
-            <li class="clearfix">
-                <div class="step">
-                    <div class="sprite one"></div>
-                    <h3>Generate a REST API.</h3>
-                    <p>
-                        Run <code>sails generate api user</code>.  This will create two files: a <a href="http://links.sailsjs.org/docs/models">model</a> <code class="pocket">api/models/User.js</code> and a <a href="http://links.sailsjs.org/docs/controllers">controller</a><code class="pocket">api/controllers/UserController.js</code>.
-                    </p>
-                </div>
-            </li>
-            <li class="clearfix">
-                <div class="step">
-                    <div class="sprite two"></div>
-                    <h3>
-                        Lift your app.
-                    </h3>
-                    <p>
-                        Run <code>sails lift</code> to start up your app server.  If you visit <a target="_blank" href="http://localhost:1337/user"><code>http://localhost:1337/user</code></a> in your browser, you'll see a <a href="http://links.sailsjs.org/docs/blueprints">WebSocket-compatible</a> user API.
-                    </p>
-                </div>
-            </li>
-            <li class="clearfix">
-                <div class="step">
-                    <div class="sprite three"></div>
-                    <h3>
-                        Dive in.
-                    </h3>
-                    <p>Blueprints are just the beginning.  You'll probably also want to learn how to customize your app's <a href="http://links.sailsjs.org/docs/routes">routes</a>, set up <a href="http://links.sailsjs.org/docs/policies">security policies</a>, configure your <a href="http://links.sailsjs.org/docs/config/connections">data sources</a>, and build custom <a target="_blank" href="http://links.sailsjs.org/docs/controllers">controller actions</a>. For more help getting started, check out the links on this page.</p>
+    <nav class="collapse navbar-collapse bs-navbar-collapse">
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="http://availabs.org/" target=_blank>Home</a></li>
+        <li><a href="http://availabs.org/about" target=_blank>About</a></li>
+        <li><a href="http://availabs.org/project" target=_blank>Projects</a></li>
+        <li><a href="http://availabs.org/api" target=_blank>APIs</a></li>
+        <li><a href="http://blog.availabs.org/" target=_blank>Blog</a></li>
 
-                </div>
-            </li>
-        </ul>
-        <div class="links">
-            <!-- <h3>Links</h3> -->
-            <ul class="link-list">
+      </ul>
+    </div>  
+  </div>  
+</div>
 
-                <h4>Docs</h4>
-                <a target="_blank" href="http://sailsjs.org/#!documentation/anatomy"><li>App Structure</li></a>
-                <a target="_blank" href="http://sailsjs.org/#!documentation/reference"><li>Reference</li></a>
-                <a target="_blank" href="http://links.sailsjs.org/docs/faq"><li>FAQ</li></a>
-                <a target="_blank" href="http://sailsjs.org"><li>Supported Databases</li></a>
 
-                <h4>Tutorials</h4>
-                <a target="_blank" href="http://links.sailsjs.org/community/sails101"><li>Sails 101</li></a>
+<div class="bs-docs-header2" id="content">
+   <div class="container">
+      <div class="col-md-8">
+      <h1>Quarterly Census of Employment and Wages</h1>
+      <p>A REST API for accessing the <a href="http://www.bls.gov/cew/cewover.htm">Quarterly Census of Employment and Wages</a> dataset from 1990-2015.</p>
+      </div>
+      <div class="col-md-4">
+      <a href="http://www.kauffman.org/" target='blank'><img src="/images/kauffman.png"></a>
+      </div>
+   </div>
 
-                <h4>Community</h4>
-                <a target="_blank" href="http://stackoverflow.com/search?q=sails.js"><li>StackOverFlow</li></a>
-                <a target="_blank" href="https://github.com/balderdashy/sails"><li>GitHub</li></a>
-                <a target="_blank" href="https://groups.google.com/forum/#!forum/sailsjs"><li>Google Group</li></a>
-                <a target="_blank" href="http://webchat.freenode.net/"><li>IRC (#sailsjs on freenode)</li></a>
+</div>
+<div class="container bs-docs-container">
+   <div class="row">
+      <div class="col-md-9" role="main">
 
-            </ul>
-        </div>
+         <div class="bs-docs-section">
+<h1 id="introduction">Introduction<a id="sec-1"></a></h1>
+This is an api for access to data from the Quarterly Census of Employment and Wages (QCEW) data sets. The data this api exposes is a subset
+of the total history of QCEW, from 1990 - 2015 as to allow for the inclusion of census geographic data fields. At this time no authentication or
+registration is required. 
+
+
+<h1 id="dynamic-routes">Dynamic Routes<a id="sec-2"></a></h1>
+
+<p></p>
+
+<p>Dynamic Routes in the <code>qcewApi</code> (inspired by the bdsAPI) allow clients to query this information based on increasingly specific subgroups given that the subgroup combination is made available by the U.S. Bureau of Labor Statistics. Routes return a JSON object.  Unless otherwise specified by the <code>flat</code> parameter routes will return an array of objects that groups row data in the order of the dynamic route.  This means clients may request establishment data based on area fips broken down by year(<code>/fips/yr</code>) and then based on user actions,  request establishments broken down by area fips, year, and industry code (<code>/fips/yr/ind</code>). Conversely <code>/fips/ind/year</code> will provide breakdowns of area establishments based on industry code,  then year. 
+
+<p>Here are the lists of the valid URI segments that may be combined along with their corresponding database table and descriptions (keep in mind that URI segments may be combined in any order):   </p>
+
+
+
+<h2 id="establishment-data">US Employment Fields<a id="sec-2-1"></a></h2>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups">
+
+
+<colgroup>
+<col class="left">
+
+<col class="left">
+
+<col class="left">
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="left">Database Tabel</th>
+<th scope="col" class="left">URI Segments</th>
+<th scope="col" class="left">Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td class="left">qtr</td>
+<td class="left">qtr</td>
+<td class="left">Quarter</td>
+</tr>
+
+
+<tr>
+<td class="left">industry_code</td>
+<td class="left">ind</td>
+<td class="left">Sector (naics)</td>
+</tr>
+
+
+<tr>
+<td class="left">own_code</td>
+<td class="left">oc</td>
+<td class="left">ownership code</td>
+</tr>
+
+
+<tr>
+<td class="left">agglvl_code</td>
+<td class="left">alvl</td>
+<td class="left">Aggregation Level</td>
+</tr>
+
+
+<tr>
+<td class="left">area_fips</td>
+<td class="left">fips</td>
+<td class="left">federal/state/county/msa code</td>
+</tr>
+
+
+<tr>
+<td class="left">year</td>
+<td class="left">yr</td>
+<td class="left">Dataset Year</td>
+</tr>
+
+</tbody>
+</table>
+
+
+<h1 id="route-conditions">Route Conditions<a id="sec-4"></a></h1>
+
+<p>Endpoints may (and in most cases should) be subjected to conditions which reduce the over all size of the data returned. Currently all queries require 1 - 5 area fips codes and at least one year. This can by done by including zero filled numbers to the end of any URI segment that correspond to the codes of that URI element (codes may be found in the Code section).  For example the URI:    </p>
+
+<p><code>/yr2002/qtr13/fips36001</code></p>
+
+<p>will return an object of the form:   </p>
+
+<pre><code>[
+  {
+    "key": "2002",
+    "values": [
+      {
+        "key": "1",
+        "values": [
+          {
+            "key": "36001",
+            "values": [
+              {
+                "area_fips": "36001",
+                "own_code": "0",
+                "industry_code": "10",
+                "qtr": "1",
+                "year": "2002",
+                "qtrly_estabs_count": "9252",
+                "lq_qtrly_estabs_count": "1.0"
+              },
+
+              .
+              .
+              .
+             ]
+          }
+        ]
+      }
+    ]
+  }
+]
+</code></pre>
+
+<p>Where year is subjected to the condition ‘yr = '2002'’, fips is subject to the condition  ‘fips= “36001”’ and ‘qrt in (“1”, “3”).’</p>
+
+<h1 id='datatypes'>Data Formats<a id="sec-8"></a></h1>
+
+<p>Below are the lengths of different discriminator fields. All queries submitted
+that wish to specify parameters in the following fields must do so with the lengths specified.
+Special note: While industry codes are not all of length 6, you must specify a code of length 6
+for the desired code. For example if "10" is the desired code, the code "000010" should be used.
+This makes the statement of multiple codes simple to parse e.g. the codes 
+"331" and "111" are different codes but "331111" is also a code so <code>/ind331111</code>
+will uniquely specify "Iron and Steel Mills" while <code>/ind000111000331</code>
+specifies industries "Crop Production" and "Primary metal manufacturing"   </p>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups">
+<colgroup>
+<col class="right">
+
+<col class="left">
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="right">field</th>
+<th scope="col" class="left">length</th>
+</tr>
+</thead>
+
+<tbody>
+
+<tr>
+<td class="right">qtr</td>
+<td class="left"> 1</td>
+</tr>
+
+<tr>
+<td class="right">yr</td>
+<td class="left"> 4</td>
+</tr>
+
+<tr>
+<td class="right">fips</td>
+<td class="left"> 5</td>
+</tr>
+
+<tr>
+<td class="right">ind</td>
+<td class="left"> 6</td>
+</tr>
+
+<tr>
+<td class="right">oc</td>
+<td class="left"> 1</td>
+</tr>
+
+<tr>
+<td class="right">alvl</td>
+<td class="left"> 2</td>
+</tr>
+
+</tbody>
+</table>
+
+
+<h1 id="codes">Codes<a id="sec-5"></a></h1>
+
+
+
+<h2 i3d="quarter">Quarter<a id="sec-5-1"></a></h2>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups">
+
+
+<colgroup>
+<col class="right">
+
+<col class="left">
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="right">code</th>
+<th scope="col" class="left">value</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td class="right">1</td>
+<td class="left">January - March</td>
+</tr>
+
+
+<tr>
+<td class="right">2</td>
+<td class="left">April - June</td>
+</tr>
+
+
+<tr>
+<td class="right">3</td>
+<td class="left">July - September</td>
+</tr>
+
+
+<tr>
+<td class="right">4</td>
+<td class="left">October - December</td>
+</tr>
+
+
+
+</tbody>
+</table>
+
+
+
+<h2 id="area-fips">Area Fips<a id="sec-5-2"></a></h2>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups">
+
+
+<colgroup>
+<col class="right">
+
+<col class="left">
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="left">code</th>
+<th scope="col" class="right">value</th>
+
+</tr>
+</thead>
+
+<tbody>
+
+<tr>
+<td class="left">US000</td>
+<td class="right">U.S. Total</td>
+</tr>
+
+<tr>
+<td class="left">USCMS</td>
+<td class="right">U.S. Combined Statistical Areas (combined)</td>
+</tr>
+
+<tr>
+<td class="left">USMSA</td>
+<td class="right">U.S. Metropolitan Statistical Area </td>
+</tr>
+
+<tr>
+<td class="left">USNMS</td>
+<td class="right">U.S. Non-Metropolitan Area Counties</td>
+</tr>
+
+<tr>
+<td class="left">XXXXX(5 digits)</td>
+<td class="right">U.S. County</td>
+</tr>
+
+<tr>
+<td class="left">CXXXX</td>
+<td class="right">U.S. MSA/CSA</td>
+
+</tr>
+
+
+</tbody>
+</table>
+<p> A full reference for area fips codes can be found in the following links:
+    for area codes in years <a href='http://www.bls.gov/cew/doc/titles/area/area_titles.htm'>2013-?</a>  
+    and for those that are <a href='http://www.bls.gov/cew/doc/titles/area/old_area_titles.htm'>pre-2013</a> 
+</p>
+
+<h2 id="industry-code">High Level Industry Codes (Naics)<a id="sec-5-3"></a></h2>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups">
+
+
+<colgroup>
+<col class="right">
+<col class="left">
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="right">code</th>
+<th scope="col" class="left">value</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td class="right">10</td>
+<td class="left">All Industries</td>
+</tr>
+
+<tr>
+<td class="right">101</td>
+<td class="left">Goods- Producing</td>
+</tr>
+
+<tr>
+<td class="right">1011</td>
+<td class="left">Natural Resources and Mining</td>
+</tr>
+
+<tr>
+<td class="right">1012</td>
+<td class="left">Construction</td>
+</tr>
+
+<tr>
+<td class="right">1013</td>
+<td class="left">Manufacturing</td>
+</tr>
+
+<tr>
+<td class="right">102</td>
+<td class="left">self-providing</td>
+</tr>
+
+<tr>
+<td class="right">1021</td>
+<td class="left">Trade, transportation, and utilities</td>
+</tr>
+
+<tr>
+<td class="right">1022</td>
+<td class="left">information</td>
+</tr>
+
+<tr>
+<td class="right">1023</td>
+<td class="left">Financial activities</td>
+</tr>
+
+<tr>
+<td class="right">1024</td>
+<td class="left">Professional and business services</td>
+</tr>
+
+<tr>
+<td class="right">1025</td>
+<td class="left">Education and Health services</td>
+</tr>
+
+<tr>
+<td class="right">1026</td>
+<td class="left">Leisure and hospitality</td>
+</tr>
+
+<tr>
+<td class="right">1027</td>
+<td class="left">Other Services</td>
+</tr>
+
+<tr>
+<td class="right">1029</td>
+<td class="left">Unclassified</td>
+</tr>
+
+</tbody>
+</table>
+
+<p> An exhaustive list of the industrial naics codes for this data set can be found 
+    <a href='http://www.bls.gov/cew/doc/titles/industry/industry_titles.htm'>here</a>. </p>
+
+
+<h2 id="own">Ownership Codes<a id="sec-5-4"></a></h2>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups">
+
+
+<colgroup>
+<col class="right">
+
+<col class="left">
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="right">code</th>
+<th scope="col" class="left">value</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td class="right">0</td>
+<td class="left">Total Covered</td>
+</tr>
+
+<tr>
+<td class="right">1</td>
+<td class="left">Federal Government</td>
+</tr>
+
+<tr>
+<td class="right">2</td>
+<td class="left">State Government</td>
+</tr>
+
+<tr>
+<td class="right">3</td>
+<td class="left">Local Government</td>
+</tr>
+
+<tr>
+<td class="right">4</td>
+<td class="left">International Government</td>
+</tr>
+
+<tr>
+<td class="right">5</td>
+<td class="left">Private</td>
+</tr>
+
+
+<tr>
+<td class="right">8</td>
+<td class="left">Total Government</td>
+</tr>
+
+<tr>
+<td class="right">9</td>
+<td class="left">Total U.I. covered (excludes federal government)</td>
+</tr>
+
+</tbody>
+</table>
+These are all available codes, more information is available <a href='http://www.bls.gov/cew/doc/titles/ownership/ownership_titles.htm'>here</a>.
+
+
+<h2 id="agg">High Level Aggregation Levels<a id="sec-5-5"></a></h2>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups">
+
+
+<colgroup>
+<col class="right">
+
+<col class="left">
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="right">code</th>
+<th scope="col" class="left">value</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td class="right">10</td>
+<td class="left">National Covered</td>
+</tr>
+
+<tr>
+<td class="right">30</td>
+<td class="left">CMSA or CSA </td>
+</tr>
+
+<tr>
+<td class="right">40</td>
+<td class="left">MSA</td>
+</tr>
+
+<tr>
+<td class="right">50</td>
+<td class="left">Statewide </td>
+</tr>
+
+<tr>
+<td class="right">70</td>
+<td class="left">Countywide</td>
+</tr>
+
+<tr>
+<td class="right">80</td>
+<td class="left">MicroSA</td>
+</tr>
+
+
+<tr>
+<td class="right">91</td>
+<td class="left">All US MSAs</td>
+</tr>
+
+<tr>
+<td class="right">92</td>
+<td class="left">All CMSA or CSAs </td>
+</tr>
+
+<tr>
+<td class="right">93</td>
+<td class="left">non-MSA Counties </td>
+</tr>
+
+<tr>
+<td class="right">94</td>
+<td class="left">Total Unempolyment Insurance covered </td>
+</tr>
+
+<tr>
+<td class="right">95</td>
+<td class="left">Total Government </td>
+</tr>
+
+<tr>
+<td class="right">96</td>
+<td class="left">Total Government By state</td>
+</tr>
+
+</tbody>
+</table>
+
+<p>This is a set of the high level codes. More specific codes are available <a href='http://www.bls.gov/cew/doc/titles/agglevel/agglevel_titles.htm'>here</a>.
+
+<h1 id="additional-parameters">Additional Parameters<a id="sec-6"></a></h1>
+
+<p>If this hierarchical behavior is not desirable data may be returned as a list of rows by passing the GET argument ‘flat’ equal to any non falsy value.  For example:<code>/yr2002/qtr13/fips36001/flat=true</code>
+will return a simplified data format. The format consists consists of a single object with three fields. The first being an array of names of the datafields (schema) for each of the following rows. The second being an array of arrays(rows) which are equal in length to the datafields array, each array containing a row of the data from the database. The final field contains an array of the datatypes(types) for each datafield (in order).</p>
+
+<pre><code>
+{
+  "schema": [
+    "total_qtrly_wages",
+    "avg_wkly_wage",
+    "year",
+    "qtr",
+    "area_fips"
+  ],
+  "rows": [
+    [
+      "2193419461",
+      "746",
+      "2002",
+      "1",
+      "36001"
+    ],
+    ...
+   ],
+  "types": [
+    "INTEGER",
+    "INTEGER",
+    "STRING",
+    "STRING",
+    "STRING"
+  ]
+}   
+</code></pre>
+<h2>Example</h2>
+<p>If a user only wants specific columns they may be selected with the ‘fields’ GET variable. If `all' is present in the fields array
+all columns of the data will be returned</p>
+<h2>Query:</h2>
+<pre><code>
+/data/yr2002/qtr13/fips36001?fields[]=total_qtrly_wages&fields[]=avg_wkly_wage&fields=all&flat=true
+</code></pre>
+<h2>Response:</h2>
+<pre><code>
+{
+  "schema": [
+    "area_fips",
+    "own_code",
+    "industry_code",
+    "agglvl_code",
+    "size_code",
+    "year",
+    "qtr",
+    "disclosure_code",
+    "area_title",
+    "own_title",
+    "industry_title",
+    "agglvl_title",
+    "size_title",
+    "qtrly_estabs_count",
+    "month1_emplvl",
+    "month2_emplvl",
+    "month3_emplvl",
+    "total_qtrly_wages",
+    "taxable_qtrly_wages",
+    "qtrly_contributions",
+    "avg_wkly_wage",
+    "lq_disclosure_code",
+    "lq_qtrly_estabs_count",
+    "lq_month1_emplvl",
+    "lq_month2_emplvl",
+    "lq_month3_emplvl",
+    "lq_total_qtrly_wages",
+    "lq_taxable_qtrly_wages",
+    "lq_qtrly_contributions",
+    "lq_avg_wkly_wage",
+    "oty_disclosure_code",
+    "oty_qtrly_estabs_count_chg",
+    "oty_qtrly_estabs_count_pct_chg",
+    "oty_month1_emplvl_chg",
+    "oty_month1_emplvl_pct",
+    "oty_month2_emplvl_chg",
+    "oty_month2_emplvl_pct",
+    "oty_month3_emplvl_chg",
+    "oty_month3_emplvl_pct",
+    "oty_total_qtrly_wages_chg",
+    "oty_total_qtrly_wages_pct",
+    "oty_taxable_qtrly_wages_chg",
+    "oty_taxable_qtrly_wages_pct",
+    "oty_qtrly_contributions_chg",
+    "oty_qtrly_contributions_pct",
+    "oty_avg_wkly_wage_chg",
+    "oty_avg_wkly_wage_pct"
+  ],
+  "rows": [
+   ...],
+  "types": [
+    "STRING",
+    "STRING",
+    "STRING",
+    "STRING",
+    "STRING",
+    "STRING",
+    "STRING",
+    "STRING",
+    "STRING",
+    "STRING",
+    "STRING",
+    "STRING",
+    "STRING",
+    "INTEGER",
+    "INTEGER",
+    "INTEGER",
+    "INTEGER",
+    "INTEGER",
+    "INTEGER",
+    "INTEGER",
+    "INTEGER",
+    "STRING",
+    "FLOAT",
+    "FLOAT",
+    "FLOAT",
+    "FLOAT",
+    "FLOAT",
+    "FLOAT",
+    "FLOAT",
+    "FLOAT",
+    "STRING",
+    "INTEGER",
+    "FLOAT",
+    "INTEGER",
+    "FLOAT",
+    "INTEGER",
+    "FLOAT",
+    "INTEGER",
+    "FLOAT",
+    "INTEGER",
+    "FLOAT",
+    "INTEGER",
+    "FLOAT",
+    "INTEGER",
+    "FLOAT",
+    "INTEGER",
+    "FLOAT"
+  ]
+}
+  
+</code></pre>
+<p>The default data option will be a heirarchical structure. That being an array objects</p>
+
+
+
+
+
+<p>PLEASE NOTE:  the current parse function does not support paging ( it is not clear the best way to page through a hierarchical object).  This means it is possible to request data that takes a very long time to return and may CRASH the browser if loaded into memory.  It is (currently) the client’s responsibility to request reasonable amounts of data!</p>
+
+
+
     </div>
 </div>
+
+
+      <div class="col-md-3" role="complementary">
+         <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm" style="position:fixed">
+            <ul class="nav bs-docs-sidenav">
+               <li class="">
+                  <a href="#sec-1">Introduction</a></a>
+               </li>
+               <li class="">
+                  <a href="#sec-2">Dynamic Routes</a>
+                  <ul class="nav">
+                     <li class=""><a href="#sec-2-1">US Employment Fields</a></li>
+                  </ul>
+               </li>
+               <li class="">
+                  <a href="#sec-4">Route Conditions</a>
+               </li>
+	       <li class="">
+		   <a href="#sec-8">Data Formats</a>
+	       </li>
+               <li class="">
+                  <a href="#sec-5">Codes</a>
+                  <ul class="nav">
+                     <li class=""><a href="#sec-5-1">Quarter</a></li>
+                     <li class=""><a href="#sec-5-2">Area Fips</a></li>
+                     <li class=""><a href="#sec-5-3">High Level Industry Codes</a></li>
+                     <li class=""><a href="#sec-5-4">Ownership Codes</a></li>
+		     <li class=""><a href="#sec-5-5">Aggregation Levels</a></li>
+                  </ul>
+               </li>
+               <li class="">
+                  <a href="#sec-6">Additional Parameters</a>
+               </li>
+            </ul>
+            <a class="back-to-top" href="#top">
+            Back to top
+            </a>
+         </nav>
+      </div>
+   
+   </div> <!-- Row -->
+</div>
+<!-- Footer
+   ================================================== -->
+<footer class="bs-docs-footer" role="contentinfo">
+</footer>
+<!-- Bootstrap core JavaScript
+   ================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src='bower_components/jquery/dist/jquery.min.js' ></script>
+<script src='bower_components/bootstrap/js/scrollspy.js' ></script>
+<script src='bower_components/bootstrap/js/affix.js' ></script>
+<script >
+  $(function(){
+
+  $('body').scrollspy({target:".bs-docs-sidebar"});
+
+  $('.bs-docs-sidebar').affix({
+    offset: {
+      top: 420,
+      bottom: function () {
+        return (this.bottom = $('.footer').outerHeight(true))
+      }
+    }
+  });
+})
+</script>

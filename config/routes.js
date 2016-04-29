@@ -10,8 +10,8 @@
 module.exports.routes = {
 
   //----------Main Page----------------------------
-    '/': 'LandingController.index',
-
+    '/': {view:'homepage'},
+    '/demo' : 'LandingController.index',
     'PUT /*': {response: 'notFound'},
     'POST /*':{response: 'notFound'},
     'DELETE /*':{response: 'notFound'},

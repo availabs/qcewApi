@@ -2,6 +2,7 @@
  */
 
 var lodash = sails.util._;
+var d3 = require('d3');
 var dbconn = require('../services/dbBridge')();
 var meta_data= {
     fields:[
@@ -62,28 +63,19 @@ var meta_data= {
 	'year',
 	'qtrly_estabs_count',
 	'lq_qtrly_estabs_count',
+
     ],
     valid:{
 	mandatory : ['fips','yr'],
-	combinations:[
-	    [],
-	    ['qtr'],
-	    ['ind'],
-	    ['oc'],
-	    ['alvl']
-	    ['qtr','ind'],
-	    ['qtr','qec'],
-	    ['qtr','alvl'],
-	    ['oc','alvl'],
-	    ['ind','oc']
-	    ['oc','alvl'],
-	    ['qtr','oc'],
-	    ['qtr','ind','alvl'],
-	    ['qtr','oc','alvl'],
-	    ['ind','oc','alvl'],
-	    ['qtr','ind','oc'],
-	    ['qtr','ind','oc','alvl'],
-	],
+	queryable: {
+	    'qtr':true,
+	    'yr':true,
+	    'fips':true,
+	    'ind':true,
+	    'oc':true,
+	    'alvl':true,
+
+	},
 	keymap:{
 	    'qtr':'qtr',
 	    'yr':'year',
@@ -91,6 +83,7 @@ var meta_data= {
 	    'ind':'industry_code',
 	    'oc':'own_code',
 	    'alvl':'agglvl_code',
+
 	},
 	formatmap:{
 	    'qtr':1,
@@ -99,6 +92,7 @@ var meta_data= {
 	    'ind':6,
 	    'oc':1,
 	    'alvl':2,
+
 	},
     },
 };
@@ -128,38 +122,46 @@ module.exports = {
 	    
 	    },true) && p ;
 	},true);                                      //if no constraints 
-	                                              //passed then it is valid
+	                                             //passed then it is valid
 	
-	var validFields = lodash.find(meta_data.valid.combinations, (lst) =>{
-	    return lodash.xor(params,meta_data
-			             .valid
-			             .mandatory
-			             .concat(lst)).length === 0;
-	});
+	var fields = lodash.keys(meta_data.valid.queryable);
+	var validFields = lodash.intersection(fields,params);
+	var areValidFields = validFields.length === params.length;
+	console.log('valid check');
+	console.log(fields);
+	console.log(params);
+	console.log(validFields);
+	
 	//makesure constaints valid, field valid,
 	//and that year and area are both constrained
 	console.log('constraints',validConstraints,
-		    '\nillegal Fields',     validFields,
+		    '\nillegal Fields',     !areValidFields,
 		    '\nyear', fieldmap['yr'] && fieldmap['yr'].length > 0,
 		    '\nfips', fieldmap['fips'] && fieldmap['fips'].length > 0);
-	return validConstraints && validFields && 
+	return validConstraints && areValidFields && 
 	    fieldmap['yr'] && fieldmap['yr'].length > 0 && 
 	    fieldmap['fips'] && fieldmap['fips'].length > 0;
     },
     
     /**
-     *This function returns the actual column names of the fields
+     *This function returns an array of actual column names of the fields
      *being queried
      */
     _columns : function(params){
 	var columns;
 	console.log('My params',params);
+	var keymap = meta_data.valid.keymap;
+	var fields = meta_data.fields;
+	console.log(params.map(f=>f.toLowerCase()))
+	if(params.map(f=>f.toLowerCase()).indexOf('all') >=0)
+	    return meta_data.fields;
 	if(params){
-	    columns = lodash.map(lodash.filter(params, (field) =>{
-		return meta_data.valid.keymap[field]; 
-	    }), (field) => meta_data.valid.keymap[field]
-			       ).join(','); //end of map
+	    columns = lodash.filter(params, (field) =>{
+		console.log(field,keymap[field],fields.indexOf(field));
+		return (keymap[field] || fields.indexOf(field) >= 0) 
+	    })
 	}
+	
 	if(!columns || !columns.length)
 	    columns = this._defaultColumns();
 	console.log('My requested columns',columns);
@@ -186,12 +188,17 @@ module.exports = {
 	});
 	var re;
 	if(flag === 'fips'){
-	   re = new RegExp('C\\d{4}|CS\\d{3}|US000|USCMS|USNMS'+
+	    re = new RegExp('C\\d{4}|CS\\d{3}|US000|USCMS|USNMS'+
 			   '|USMSA|\\d{5}','g')
-	}else{
-	    re = new RegExp("\\d{1,"+ w + "}","g");
+	    return field.match(re).slice(0,5); //allow no more than 5 fips 
+	   
 	}
-	return field.match(re);
+	else{
+	    re = new RegExp("\\d{1,"+ w + "}","g");
+	    
+	    return field.match(re);
+	}
+	
     },
 
     /**
@@ -205,7 +212,6 @@ module.exports = {
 	fields.forEach((field) => {
 	    var fieldname = this._getFieldName(field);
 	    var value = this._fieldConditions(field);
-	    console.log(fieldname,value);
 	    conditionMap[fieldname] = value;
 	});
 	return conditionMap;
@@ -213,9 +219,13 @@ module.exports = {
     
     _buildConditions : function(condMap){
 	var conds = lodash.keys(condMap).map( (fieldname) =>{
-	    if(fieldname)
+	    if(fieldname && condMap[fieldname] && condMap[fieldname].length){
+		var map = condMap[fieldname];
 		return meta_data.valid.keymap[fieldname]+
-		"='"+condMap[fieldname].join('')+"'";
+		((map.length < 2) ? 
+		    "='"+map.join('')+"'" :
+		    " in ('"+map.join("','")+"')");
+		}
 	    else
 		return '';
 	});
@@ -228,7 +238,7 @@ module.exports = {
      *for the dataset 
      */
     _defaultColumns : function(){
-	return meta_data.defaultFields.join(',');
+	return meta_data.defaultFields;
     },
 
 
@@ -266,14 +276,60 @@ module.exports = {
      * Function to send to validated and structured data
      * to be constructed into a query
      */
-    querydb : function(params,columns,cb){
+    querydb : function(params,columns,out,cb){
 	var map    = this._getConditions(params);
-	console.log('fieldmap',map);
+
 	if(!this._isValid(map)){
+	    
 	    throw new Error('Malformed field','FieldService',129);
 	}
-	dbconn.pass(this._columns(columns),this._buildConditions(map),cb);
+	console.log(map);
+	if(map.ind){
+	    map.ind = map.ind.map(code =>{
+		return removeZeros(code);
+	    });
+	}
 	
-    },
-    
+	var tfields = Object.keys(map).map(val =>{ 
+	    return meta_data.valid.keymap[val];
+	})
+			
+	var t = this._columns(columns);
+	
+	dbconn.pass(lodash.union(t,tfields),this._buildConditions(map),(e,d)=>{
+	    
+	    if(out || !d.rows){
+		cb(e,d);
+		return;
+	    }
+	    
+
+	    var objrows = d.rows.map(el => {
+	    	return d.schema.reduce((obj,t,i)=>{
+	    	    obj[t] = el[i];
+		    return obj;
+	    	},{});
+	    });
+	    var retdata = d3.nest();
+
+	    Object.keys(map).forEach(p=>{
+		retdata.key(s => s[meta_data.valid.keymap[p]])
+	    });
+	    var vals = retdata.entries(objrows);
+
+	    cb(e,vals);
+	});
+	
+    },    
 };
+
+/*This is a function to remove leading zeros in strings*/
+function removeZeros(code){
+    var l = code.length
+    var i = 0;
+    for(; i < l; i++){
+	if(code[i] !== '0')
+	    break;
+    }
+    return code.substr(i,l-i);
+}

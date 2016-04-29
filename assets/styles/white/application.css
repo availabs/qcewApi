@@ -3,37 +3,37 @@
   font-family: 'Open Sans';
   font-style: normal;
   font-weight: 300;
-  src: local("Open Sans Light"), local("OpenSans-Light"), url(/styles/white/fonts/google/open-sans-light.woff) format("woff");
+  src: local("Open Sans Light"), local("OpenSans-Light"), url(fonts/google/open-sans-light.woff) format("woff");
 }
 @font-face {
   font-family: 'Open Sans';
   font-style: normal;
   font-weight: 400;
-  src: local("Open Sans"), local("OpenSans"), url(/styles/white/fonts/google/open-sans.woff) format("woff");
+  src: local("Open Sans"), local("OpenSans"), url(fonts/google/open-sans.woff) format("woff");
 }
 @font-face {
   font-family: 'Open Sans';
   font-style: normal;
   font-weight: 600;
-  src: local("Open Sans Semibold"), local("OpenSans-Semibold"), url(/styles/white/fonts/google/open-sans-semibold.woff) format("woff");
+  src: local("Open Sans Semibold"), local("OpenSans-Semibold"), url(fonts/google/open-sans-semibold.woff) format("woff");
 }
 @font-face {
   font-family: 'Open Sans';
   font-style: normal;
   font-weight: 700;
-  src: local("Open Sans Bold"), local("OpenSans-Bold"), url(/styles/white/fonts/google/open-sans-bold.woff) format("woff");
+  src: local("Open Sans Bold"), local("OpenSans-Bold"), url(fonts/google/open-sans-bold.woff) format("woff");
 }
 @font-face {
   font-family: 'Open Sans';
   font-style: italic;
   font-weight: 400;
-  src: local("Open Sans Italic"), local("OpenSans-Italic"), url(/styles/white/fonts/google/open-sans-italic.woff) format("woff");
+  src: local("Open Sans Italic"), local("OpenSans-Italic"), url(fonts/google/open-sans-italic.woff) format("woff");
 }
 @font-face {
   font-family: 'Open Sans';
   font-style: italic;
   font-weight: 300;
-  src: local("Open Sans Light Italic"), local("OpenSansLight-Italic"), url(/styles/white/fonts/google/open-sans-italic-light.woff) format("woff");
+  src: local("Open Sans Light Italic"), local("OpenSansLight-Italic"), url(fonts/google/open-sans-italic-light.woff) format("woff");
 }
 /*! normalize.css v3.0.2 | MIT License | git.io/normalize */
 /* line 9, ../../../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/_normalize.scss */
@@ -406,8 +406,8 @@ th {
 }
 @font-face {
   font-family: 'Glyphicons Halflings';
-  src: url("/styles/white/fonts/bootstrap/glyphicons-halflings-regular.eot");
-  src: url("/styles/white/fonts/bootstrap/glyphicons-halflings-regular.eot?#iefix") format("embedded-opentype"), url("/styles/white/fonts/bootstrap/glyphicons-halflings-regular.woff") format("woff"), url("/styles/white/fonts/bootstrap/glyphicons-halflings-regular.ttf") format("truetype"), url("/styles/white/fonts/bootstrap/glyphicons-halflings-regular.svg#glyphicons_halflingsregular") format("svg");
+  src: url("fonts/bootstrap/glyphicons-halflings-regular.eot");
+  src: url("fonts/bootstrap/glyphicons-halflings-regular.eot?#iefix") format("embedded-opentype"), url("fonts/bootstrap/glyphicons-halflings-regular.woff") format("woff"), url("fonts/bootstrap/glyphicons-halflings-regular.ttf") format("truetype"), url("fonts/bootstrap/glyphicons-halflings-regular.svg#glyphicons_halflingsregular") format("svg");
 }
 /* line 21, ../../../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/_glyphicons.scss */
 .glyphicon {
@@ -1449,7 +1449,7 @@ body {
   font-family: "Open Sans", sans-serif;
   font-size: 13px;
   line-height: 1.428571429;
-  color: #f8f8f8;
+  color: #000;
   background-color: white;
 }
 
@@ -1465,12 +1465,12 @@ textarea {
 
 /* line 48, ../../../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/_scaffolding.scss */
 a {
-  color: #4d9dd7;
+  color: #fff;
   text-decoration: none;
 }
 /* line 52, ../../../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/_scaffolding.scss */
 a:hover, a:focus {
-  color: #2877b0;
+  color: #000;
   text-decoration: underline;
 }
 /* line 58, ../../../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/_scaffolding.scss */
@@ -8194,8 +8194,8 @@ button.close {
  * -------------------------- */
 @font-face {
   font-family: 'FontAwesome';
-  src: url("/styles/white/fonts/font-awesome/fontawesome-webfont.eot?v=4.2.0");
-  src: url("/styles/white/fonts/font-awesome/fontawesome-webfont.eot?#iefix&v=4.2.0") format("embedded-opentype"), url("/styles/white/fonts/font-awesome/fontawesome-webfont.woff?v=4.2.0") format("woff"), url("/styles/white/fonts/font-awesome/fontawesome-webfont.ttf?v=4.2.0") format("truetype"), url("/styles/white/fonts/font-awesome/fontawesome-webfont.svg?v=4.2.0#fontawesomeregular") format("svg");
+  src: url("./fonts/font-awesome/fontawesome-webfont.eot?v=4.2.0");
+  src: url("./fonts/font-awesome/fontawesome-webfont.eot?#iefix&v=4.2.0") format("embedded-opentype"), url("./fonts/font-awesome/fontawesome-webfont.woff?v=4.2.0") format("woff"), url("./fonts/font-awesome/fontawesome-webfont.ttf?v=4.2.0") format("truetype"), url("./fonts/font-awesome/fontawesome-webfont.svg?v=4.2.0#fontawesomeregular") format("svg");
   font-weight: normal;
   font-style: normal;
 }
@@ -15908,6 +15908,27 @@ textarea + .help-block,
  * SVG CSS
  */
 /* line 146, ../../../bower_components/nvd3/nv.d3.css */
+/*svg {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+*/
+/* line 160, ../../../bower_components/nvd3/nv.d3.css */
+svg text {
+  font: normal 12px Arial;
+}
+
+/* line 164, ../../../bower_components/nvd3/nv.d3.css */
+svg .title {
+  font: bold 14px Arial;
+}
 
 /* line 168, ../../../bower_components/nvd3/nv.d3.css */
 .nvd3 .nv-background {
@@ -22601,7 +22622,7 @@ a.fc-event {
   content: "\f0d7";
 }
 /* line 513, ../../src/sass/_override-custom-libs.scss */
-.backgrid-paginator > ul {
+.table-editable + .backgrid-paginator > ul {
   font-weight: 400;
   display: inline-block;
   padding-left: 0;
@@ -22609,12 +22630,12 @@ a.fc-event {
   border-radius: 3px;
 }
 /* line 520, ../../src/sass/_override-custom-libs.scss */
-.backgrid-paginator > ul > li {
+.table-editable + .backgrid-paginator > ul > li {
   display: inline;
 }
 /* line 522, ../../src/sass/_override-custom-libs.scss */
-.backgrid-paginator > ul > li > a,
-.backgrid-paginator > ul > li > span {
+.table-editable + .backgrid-paginator > ul > li > a,
+.table-editable + .backgrid-paginator > ul > li > span {
   position: relative;
   float: left;
   line-height: 1.428571429;
@@ -22626,29 +22647,29 @@ a.fc-event {
   margin: 0 2px;
 }
 /* line 534, ../../src/sass/_override-custom-libs.scss */
-.backgrid-paginator > ul > li > a > .fa-lg,
-.backgrid-paginator > ul > li > span > .fa-lg {
+.table-editable + .backgrid-paginator > ul > li > a > .fa-lg,
+.table-editable + .backgrid-paginator > ul > li > span > .fa-lg {
   position: relative;
   top: -1px;
 }
 /* line 540, ../../src/sass/_override-custom-libs.scss */
-.backgrid-paginator > ul > li:first-child > a,
-.backgrid-paginator > ul > li:first-child > span {
+.table-editable + .backgrid-paginator > ul > li:first-child > a,
+.table-editable + .backgrid-paginator > ul > li:first-child > span {
   margin-left: 0;
 }
 /* line 549, ../../src/sass/_override-custom-libs.scss */
-.backgrid-paginator > ul > li > a:hover, .backgrid-paginator > ul > li > a:focus,
-.backgrid-paginator > ul > li > span:hover,
-.backgrid-paginator > ul > li > span:focus {
+.table-editable + .backgrid-paginator > ul > li > a:hover, .table-editable + .backgrid-paginator > ul > li > a:focus,
+.table-editable + .backgrid-paginator > ul > li > span:hover,
+.table-editable + .backgrid-paginator > ul > li > span:focus {
   color: #666666;
   background-color: #eeeeee;
   border-color: transparent;
 }
 /* line 559, ../../src/sass/_override-custom-libs.scss */
-.backgrid-paginator > ul > .active > a, .backgrid-paginator > ul > .active > a:hover, .backgrid-paginator > ul > .active > a:focus,
-.backgrid-paginator > ul > .active > span,
-.backgrid-paginator > ul > .active > span:hover,
-.backgrid-paginator > ul > .active > span:focus {
+.table-editable + .backgrid-paginator > ul > .active > a, .table-editable + .backgrid-paginator > ul > .active > a:hover, .table-editable + .backgrid-paginator > ul > .active > a:focus,
+.table-editable + .backgrid-paginator > ul > .active > span,
+.table-editable + .backgrid-paginator > ul > .active > span:hover,
+.table-editable + .backgrid-paginator > ul > .active > span:focus {
   z-index: 2;
   color: #666666;
   background-color: #eeeeee;
@@ -22656,32 +22677,32 @@ a.fc-event {
   cursor: default;
 }
 /* line 571, ../../src/sass/_override-custom-libs.scss */
-.backgrid-paginator > ul > .disabled > span,
-.backgrid-paginator > ul > .disabled > span:hover,
-.backgrid-paginator > ul > .disabled > span:focus,
-.backgrid-paginator > ul > .disabled > a,
-.backgrid-paginator > ul > .disabled > a:hover,
-.backgrid-paginator > ul > .disabled > a:focus {
+.table-editable + .backgrid-paginator > ul > .disabled > span,
+.table-editable + .backgrid-paginator > ul > .disabled > span:hover,
+.table-editable + .backgrid-paginator > ul > .disabled > span:focus,
+.table-editable + .backgrid-paginator > ul > .disabled > a,
+.table-editable + .backgrid-paginator > ul > .disabled > a:hover,
+.table-editable + .backgrid-paginator > ul > .disabled > a:focus {
   color: gray;
   background-color: transparent;
   border-color: transparent;
   cursor: not-allowed;
 }
 /* line 5, ../../../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/mixins/_pagination.scss */
-.backgrid-paginator > ul > li > a,
-.backgrid-paginator > ul > li > span {
+.table-editable + .backgrid-paginator > ul > li > a,
+.table-editable + .backgrid-paginator > ul > li > span {
   padding: 4px 10px;
   font-size: 12px;
 }
 /* line 11, ../../../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/mixins/_pagination.scss */
-.backgrid-paginator > ul > li:first-child > a,
-.backgrid-paginator > ul > li:first-child > span {
+.table-editable + .backgrid-paginator > ul > li:first-child > a,
+.table-editable + .backgrid-paginator > ul > li:first-child > span {
   border-bottom-left-radius: 3px;
   border-top-left-radius: 3px;
 }
 /* line 17, ../../../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/mixins/_pagination.scss */
-.backgrid-paginator > ul > li:last-child > a,
-.backgrid-paginator > ul > li:last-child > span {
+.table-editable + .backgrid-paginator > ul > li:last-child > a,
+.table-editable + .backgrid-paginator > ul > li:last-child > span {
   border-bottom-right-radius: 3px;
   border-top-right-radius: 3px;
 }
@@ -22726,8 +22747,8 @@ table.dataTable thead .sorting_desc_disabled {
 .rickshaw_legend {
   background-color: white;
   color: #666666;
-}
 
+}
 /* line 34, ../../src/sass/_general.scss */
 html {
   min-height: 100%;
@@ -22736,6 +22757,7 @@ html {
 /* line 38, ../../src/sass/_general.scss */
 body {
   font-weight: 400;
+  padding-bottom: 100px;
   
 }
 /* line 46, ../../src/sass/_general.scss */
@@ -22757,13 +22779,13 @@ h1 small, h2 small, h3 small, h4 small, h5 small, h6 small {
 input[type=search], input.search {
   padding-left: 26px;
   background-color: white;
-  
+  background: url(../img/search.png) 5px 6px no-repeat white;
 }
 /* line 71, ../../src/sass/_general.scss */
 input[type=search].input-transparent, input.search.input-transparent {
   border: none;
   color: #666666;
- 
+  background: url(../img/search-white.png) 5px 5px no-repeat white;
 }
 /* line 103, ../../../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/mixins/_vendor-prefixes.scss */
 input[type=search].input-transparent::-moz-placeholder, input.search.input-transparent::-moz-placeholder {
@@ -24206,16 +24228,6 @@ a.text-gray-lighter:hover {
   opacity: .4;
   text-align: right;
 }
-
-.side-nav li i[class*=glyphicon] {
-  width: 16px;
-  margin-right: 8px;
-  float: left;
-  line-height: 20px;
-  font-size: 14px;
-  opacity: .4;
-  text-align: right;
-}
 /* line 116, ../../src/sass/_base.scss */
 .side-nav li a:hover, .side-nav li a:focus {
   background: rgba(0, 0, 0, 0.07);
@@ -24272,7 +24284,7 @@ a.text-gray-lighter:hover {
   transform: rotate(90deg);
 }
 /* line 159, ../../src/sass/_base.scss */
-.side-nav li a.active {
+.side-nav li.active > a {
   font-weight: 700;
 }
 /* line 164, ../../src/sass/_base.scss */
@@ -24697,6 +24709,7 @@ a.text-gray-lighter:hover {
 .page-header .search-query {
   color: #666666;
   border: none;
+  background: url(../img/search.png) 5px 5px no-repeat rgba(255, 255, 255, 0.5);
   padding-left: 26px;
   -webkit-transition: width 0.2s;
   -o-transition: width 0.2s;
@@ -26661,7 +26674,7 @@ table.table thead .sorting_desc_disabled {
 /***********************************/
 /* line 531, ../../src/sass/_widgets.scss */
 .landing {
-  
+  padding-bottom: 40px;
 }
 /* line 533, ../../src/sass/_widgets.scss */
 .landing .page-header {

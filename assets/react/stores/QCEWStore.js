@@ -78,6 +78,7 @@ function processQCEWData(data){
 	d3.nest()
           .key( d => d[keymap['industry_code']])
           .entries(data.rows)
-    
+    console.log('raw data',data);
+    console.log('d3 aggregate',aggregate);
     _qcew=data;
 }

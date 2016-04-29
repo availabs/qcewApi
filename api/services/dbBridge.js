@@ -1,8 +1,3 @@
-
-
-
-
-
 module.exports = function() {
     var mod;
     var query;
@@ -11,10 +6,10 @@ module.exports = function() {
     mod  = {
 	
 	pass : function(fields,conditions,cb){
-	    if(!bigquery)//defined in the global namespace
+	    if(!bigquery)//defined in the global namespace see bootstrap.js
 		bigquery = bigQuery();
 	    var err;
-	    
+
 	    query = this._buildQuery(fields,conditions);
 	    console.log(query);
 	    console.log("STARTING BIGQUERY");
@@ -32,8 +27,9 @@ module.exports = function() {
 	},
 	    
 	_processData : (response) =>{
-	    var simpleD = bigquery.parseResult(response)
+	    var simpleD =bigquery.parseResult(response)
 	    return simpleD;
+	    
 	},
     
 	_buildQuery : function(fields,conditions){

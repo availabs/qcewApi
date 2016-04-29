@@ -17,7 +17,7 @@ var metadb = require('../services/idservice');
  *
  *Project Overview -> request to api endpoint
  *                 -> endpoint dynamically constructed
- *                 -> endpoint sends decoded requrest to db module
+ *                 -> endpoint sends decoded request to db module
  *                 -> db module validates query 
  *                 -> db module constructs actual query
  *                 -> db connection receives query 
@@ -33,16 +33,17 @@ module.exports = {
     endpoint:function(req,res){
 	var opts = getUrlParams(req);
 	var fields = req.param('fields');
+	var flat = req.param('flat');
+	console.log('flat',flat);
 	console.log(fields);
 	var columns = null;
 	var params = [];
 	console.log(opts)
 	try{
-	    bqdb.querydb(opts,fields,(err,data)=>{
+	    bqdb.querydb(opts,fields,flat,(err,data)=>{
 		if(err){
 		    return res.send(err,500); 
 		}
-
 		return res.json(data);
 	    });
 	}catch(err){
@@ -69,6 +70,6 @@ module.exports = {
 };
 
 function getUrlParams(req){
-    var params = req.param('0').split('/').filter(a=>a); //remove empty strings
+    var params = req.param('0').split('/').filter(a=>a); //remove empty string
     return params
 }
