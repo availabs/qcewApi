@@ -1,4 +1,4 @@
-1;3409;0c/**
+1/**
  * Route Mappings
 * (sails.config.routes)
  * CoffeeScript for the front-end.
