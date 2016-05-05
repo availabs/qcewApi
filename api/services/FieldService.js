@@ -307,6 +307,7 @@ module.exports = {
 	    return meta_data.valid.keymap[val];
 	})
 			
+				columns = columns || this._defaultColumns();
 	var t = this._columns(columns);
 	
 
