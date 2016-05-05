@@ -8,9 +8,6 @@ var compileAssets = [
     'coffee:dev',
 ];
 
-if (process.env.NODE_ENV === 'development') {
-    compileAssets[compileAssets.length] = 'exec:webpackDevServerLift';
-}
 
 module.exports = function (grunt) {
     grunt.registerTask('compileAssets', compileAssets);

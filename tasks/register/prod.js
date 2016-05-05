@@ -10,6 +10,6 @@ module.exports = function (grunt) {
 		'sails-linker:prodJsJade',
 		'sails-linker:prodStylesJade',
 		'sails-linker:devTplJade',
-        'webpack:build'
+
 	]);
 };
