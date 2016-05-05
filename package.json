@@ -6,14 +6,11 @@
   "keywords": [],
   "dependencies": {
     "assign": "~0.1.7",
-
     "d3": "^3.5.17",
     "express": "^4.13.1",
     "googleapis": "^5.2.1",
     "bcryptjs": "^2.2.0",
     "ejs": "~0.8.4",
-
-
     "graceful-fs": "^4.1.2",
     "grunt": "0.4.2",
     "grunt-browserify": "~3.2.1",
@@ -42,7 +39,7 @@
     "stream-cache": "0.0.2",
     "superagent": "^1.2.0",
     "topojson": "~1.6.18",
-    "tree-kill": "0.0.6"
+    "tree-kill": "0.0.6",
     "webpack": "^1.10.1"
 
   },
