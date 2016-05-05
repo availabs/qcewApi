@@ -57,7 +57,7 @@
     "requirejs": "~2.1.15",
     "sails": "^0.12.1",
     "sails-disk": "~0.10.0",
-    "sails-postgresql": "^0.12.1",
+    "sails-postgresql": "^0.10.17",
     "stream-cache": "0.0.2",
     "superagent": "^1.2.0",
     "topojson": "~1.6.18",
