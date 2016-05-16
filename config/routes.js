@@ -19,7 +19,6 @@ module.exports.routes = {
     'GET /data*' : {
 				target: 'QcewController.endpoint',
 				cors:{
-						methods: 'GET',
 						origin: '*',
 				}
 		},
