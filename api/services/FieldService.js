@@ -201,6 +201,13 @@ module.exports = {
 	    return field.match(re).slice(0,5); //allow no more than 5 fips 
 	   
 	}
+	else if(flag ==='ind'){
+	    var exp = '\\d{3}\\-\\d{2}|\\d{2,'+ w + '}'
+	    console.log(exp)
+	    re = new RegExp(exp,'g')
+
+	    return field.match(re);
+	}
 	else{
 	    re = new RegExp("\\d{1,"+ w + "}","g");
 	    
