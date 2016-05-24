@@ -36,13 +36,13 @@ module.exports.connections = {
   // npm install sails-mysql
   //
 
-  authServer: {
-    adapter: 'sails-postgresql',
-    user: 'postgres',
-    password:'transit',
-    host: 'lor.availabs.org',
-    database:'qcew',
-  },
+  // authServer: {
+  //   adapter: 'sails-postgresql',
+  //   user: 'postgres',
+  //   password:'transit',
+  //   host: 'lor.availabs.org',
+  //   database:'qcew',
+  // },
 
 
   // More adapters:

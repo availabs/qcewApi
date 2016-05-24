@@ -16,11 +16,7 @@ module.exports.routes = {
     'POST /*':{response: 'notFound'},
     'DELETE /*':{response: 'notFound'},
 
-    'GET /data*' : {
-				target: 'QcewController.endpoint',
-				cors:{
-						origin: '*',
-				}
-		},
+    'GET /data*' : 'QcewController.endpoint',
+
     'GET /ids*'  : 'QcewController.idEndpoint', 
 };
