@@ -33,7 +33,7 @@ module.exports = function() {
 	},
     
 	_buildQuery : function(fields,conditions){
-	    var query = `SELECT ${fields.toString()} from [tmasWIM12.qcew]
+	    var query = `SELECT ${fields.toString()} from [tmasWIM12.qcewMetro]
 	    where ${conditions.join(' AND ')}`;
 	    return query
 	},
