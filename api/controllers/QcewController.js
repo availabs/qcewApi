@@ -82,6 +82,8 @@ function getUrlParams(req){
 
 function parseBody(body) {
     console.log(body)
+    if(!body)
+	return
     var obj = {}
     if(body.query)
 	obj.opts = body.query.split('/').filter(a=>a)
