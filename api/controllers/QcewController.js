@@ -36,8 +36,14 @@ module.exports = {
 	var flat = req.param('flat');
 	console.log('flat',flat);
 	console.log(fields);
-	var columns = null;
-	var params = [];
+	var postObj = parseBody(req.body)
+
+	if(postObj){
+	    opts = postObj.opts
+	    fields = postObj.fields
+	    flat = postObj.flat
+	}
+
 	console.log(opts)
 	try{
 	    bqdb.querydb(opts,fields,flat,(err,data)=>{
@@ -72,4 +78,18 @@ module.exports = {
 function getUrlParams(req){
     var params = req.param('0').split('/').filter(a=>a); //remove empty string
     return params
+}
+
+function parseBody(body) {
+    console.log(body)
+    var obj = {}
+    if(body.query)
+	obj.opts = body.query.split('/').filter(a=>a)
+    if(body.fields)
+	obj.fields = body.fields
+    if(body.flat)
+	obj.flat = body.flat
+    console.log(obj)
+    if(Object.keys(obj).length)
+	return obj
 }
